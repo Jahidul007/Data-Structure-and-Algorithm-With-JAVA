@@ -8,6 +8,17 @@ public class ListToArrray {
 
         LinkedList<String> theList = new LinkedList<String>(Arrays.asList(stuff));
 
+        theList.add("pumpikinf");
+        theList.addFirst("firstThing");
+
+        // convert back to an array
+        stuff = theList.toArray(new String[theList.size()]);
+
+        for (String x : stuff)
+            System.out.println(x);
+
+
+
         
     }
 }
