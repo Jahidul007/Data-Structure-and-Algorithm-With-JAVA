@@ -72,7 +72,7 @@ public class QueensProblem {
     }
 
     public static void main(String[] args) {
-        QueensProblem problem = new QueensProblem(32);
+        QueensProblem problem = new QueensProblem(16);
         problem.solve();
     }
 }
