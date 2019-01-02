@@ -19,19 +19,22 @@ public class SudokuProblem {
     }
 
     private boolean solve(int rowIndex, int columIndex) {
-        if (rowIndex == BOARD_SIZE && ++columIndex == BOARD_SIZE)
+        if (rowIndex == BOARD_SIZE && ++columIndex == BOARD_SIZE){
             return true;
+        }
         if (rowIndex == BOARD_SIZE) {
             rowIndex = 0;
         }
         if (sudokuTable[rowIndex][columIndex] != 0) {
-            solve(rowIndex + 1, columIndex + 1);
+            return solve(rowIndex + 1, columIndex);
         }
 
         for (int number = MIN_NUMBER; number <= MAX_NUMBER; number++) {
 
             if (valid(rowIndex, columIndex, number)) {
+
                 sudokuTable[rowIndex][columIndex] = number;
+
                 if (solve(rowIndex + 1, columIndex)) {
                     return true;
                 }
@@ -44,25 +47,24 @@ public class SudokuProblem {
 
     private boolean valid(int rowIndex, int columIndex, int number) {
 
-        // if given number is already in the row can't be the part of solution
-        for (int i = 0; i <= BOARD_SIZE; i++) {
+        // if given number is already in the row; the number can't be the part of solution
+        for (int i = 0; i < BOARD_SIZE; i++) {
             if (sudokuTable[i][rowIndex] == number) {
                 return false;
             }
         }
-        // if given number is already in the column can't be the part of solution
-        for (int k = 0; k <= BOARD_SIZE; k++) {
+        // if given number is already in the column; the number can't be the part of solution
+        for (int k = 0; k < BOARD_SIZE; k++) {
             if (sudokuTable[columIndex][k] == number) {
                 return false;
             }
-
         }
+        // if given number is already in the box; the number can't be the part of solution
         int boxRowOffSet = (columIndex / 3) * BOX_SIZE;
         int boxColumnOffSet = (rowIndex / 3) * BOX_SIZE;
 
-        for (int i = 0; i < BOARD_SIZE; i++) {
-            for (int j = 0; j < BOARD_SIZE; j++) {
-
+        for (int i = 0; i < BOX_SIZE; i++) {
+            for (int j = 0; j < BOX_SIZE; j++) {
                 if (number == sudokuTable[boxRowOffSet + i][boxColumnOffSet + j])
                     return false;
             }
@@ -81,5 +83,32 @@ public class SudokuProblem {
             }
             System.out.println(" ");
         }
+    }
+
+    public static void main(String[] args) {
+        int[][] sudokuTable = {
+                {3, 0, 6, 5, 0, 8, 4, 0, 0},
+                {5, 2, 0, 0, 0, 0, 0, 0, 0},
+                {0, 8, 7, 0, 0, 0, 0, 3, 1},
+                {0, 0, 3, 0, 1, 0, 0, 8, 0},
+                {9, 0, 0, 8, 6, 3, 0, 0, 5},
+                {0, 5, 0, 0, 9, 0, 6, 0, 0},
+                {1, 3, 0, 0, 0, 0, 2, 5, 0},
+                {0, 0, 0, 0, 0, 0, 0, 7, 4},
+                {0, 0, 5, 2, 0, 6, 3, 0, 0}
+        };
+        int[][] sudoku = {
+                {8,6,0,0,2,0,0,0,0},
+                {0,0,0,7,0,0,0,5,9},
+                {0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,6,0,8,0,0},
+                {0,4,0,0,0,0,0,0,0},
+                {0,0,5,3,0,0,0,0,7},
+                {0,0,0,0,0,0,0,0,0},
+                {0,2,0,0,0,0,6,0,0},
+                {0,0,7,5,0,9,0,0,0}
+        };
+        SudokuProblem problem = new SudokuProblem(sudokuTable);
+        problem.solveProblem();
     }
 }
