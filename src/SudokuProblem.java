@@ -23,7 +23,7 @@ public class SudokuProblem {
             return true;
         }
         if (rowIndex == BOARD_SIZE) {
-            rowIndex = 0;
+             rowIndex = 0;
         }
         if (sudokuTable[rowIndex][columIndex] != 0) {
             return solve(rowIndex + 1, columIndex);
@@ -63,13 +63,10 @@ public class SudokuProblem {
         int boxRowOffSet = (columIndex / 3) * BOX_SIZE;
         int boxColumnOffSet = (rowIndex / 3) * BOX_SIZE;
 
-        for (int i = 0; i < BOX_SIZE; i++) {
-            for (int j = 0; j < BOX_SIZE; j++) {
+        for (int i = 0; i < BOX_SIZE; ++i)
+            for (int j = 0; j < BOX_SIZE; ++j)
                 if (number == sudokuTable[boxRowOffSet + i][boxColumnOffSet + j])
                     return false;
-            }
-        }
-
         return true;
     }
 
@@ -78,7 +75,7 @@ public class SudokuProblem {
         for (int i = 0; i < BOARD_SIZE; i++) {
             if (i % 3 == 0) System.out.println(" ");
             for (int j = 0; j < BOARD_SIZE; j++) {
-                if (j % 3 == 0) System.out.println(" ");
+                if (j % 3 == 0) System.out.print(" ");
                 System.out.print(sudokuTable[i][j] + " ");
             }
             System.out.println(" ");
