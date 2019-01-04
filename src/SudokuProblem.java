@@ -19,11 +19,11 @@ public class SudokuProblem {
     }
 
     private boolean solve(int rowIndex, int columIndex) {
-        if (rowIndex == BOARD_SIZE && ++columIndex == BOARD_SIZE){
+        if (rowIndex == BOARD_SIZE && ++columIndex == BOARD_SIZE) {
             return true;
         }
         if (rowIndex == BOARD_SIZE) {
-             rowIndex = 0;
+            rowIndex = 0;
         }
         if (sudokuTable[rowIndex][columIndex] != 0) {
             return solve(rowIndex + 1, columIndex);
@@ -63,10 +63,13 @@ public class SudokuProblem {
         int boxRowOffSet = (columIndex / 3) * BOX_SIZE;
         int boxColumnOffSet = (rowIndex / 3) * BOX_SIZE;
 
-        for (int i = 0; i < BOX_SIZE; ++i)
-            for (int j = 0; j < BOX_SIZE; ++j)
-                if (number == sudokuTable[boxRowOffSet + i][boxColumnOffSet + j])
+        for (int i = 0; i < BOX_SIZE; ++i) {
+            for (int j = 0; j < BOX_SIZE; ++j) {
+                if (number == sudokuTable[boxRowOffSet + i][boxColumnOffSet + j]) {
                     return false;
+                }
+            }
+        }
         return true;
     }
 
@@ -95,15 +98,15 @@ public class SudokuProblem {
                 {0, 0, 5, 2, 0, 6, 3, 0, 0}
         };
         int[][] sudoku = {
-                {8,6,0,0,2,0,0,0,0},
-                {0,0,0,7,0,0,0,5,9},
-                {0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,6,0,8,0,0},
-                {0,4,0,0,0,0,0,0,0},
-                {0,0,5,3,0,0,0,0,7},
-                {0,0,0,0,0,0,0,0,0},
-                {0,2,0,0,0,0,6,0,0},
-                {0,0,7,5,0,9,0,0,0}
+                {8, 6, 0, 0, 2, 0, 0, 0, 0},
+                {0, 0, 0, 7, 0, 0, 0, 5, 9},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 6, 0, 8, 0, 0},
+                {0, 4, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 5, 3, 0, 0, 0, 0, 7},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 2, 0, 0, 0, 0, 6, 0, 0},
+                {0, 0, 7, 5, 0, 9, 0, 0, 0}
         };
         SudokuProblem problem = new SudokuProblem(sudokuTab);
         problem.solveProblem();
