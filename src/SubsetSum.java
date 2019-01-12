@@ -50,7 +50,7 @@ public class SubsetSum {
 
     public static void main(String[] args) {
 
-        int[] numbers = {5, 2, 0, 1};
+        int[] numbers = {5, 2, 3, 1};
         int sum = 9;
         SubsetSum sum1 = new SubsetSum(numbers, sum);
         sum1.solve();
