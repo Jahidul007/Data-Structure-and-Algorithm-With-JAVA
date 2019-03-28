@@ -11,7 +11,8 @@ public class HamiltonianCycle {
 
         this.hamiltonPath[0] = 0;
     }
-    public void solve(){
+
+    public void solve() {
 
         if (findFeasibleSolution(1)) {
             showHamiltonianPath();
@@ -29,11 +30,11 @@ public class HamiltonianCycle {
                 return false;
             }
         }
-        for (int vertexIndex = 1; vertexIndex < numOfVertices; vertexIndex++){
-            if (isFeasible(vertexIndex, position)){
+        for (int vertexIndex = 1; vertexIndex < numOfVertices; vertexIndex++) {
+            if (isFeasible(vertexIndex, position)) {
 
                 hamiltonPath[position] = vertexIndex;
-                if (findFeasibleSolution(position+1)){
+                if (findFeasibleSolution(position + 1)) {
                     return true;
                 }
                 // BackTrack !!!
@@ -45,13 +46,13 @@ public class HamiltonianCycle {
     private boolean isFeasible(int vertexIndex, int position) {
 
         // first criterion: whether two nodes are connected
-        if (adjacencyMatrix[hamiltonPath[position-1]][vertexIndex] == 0){
+        if (adjacencyMatrix[hamiltonPath[position - 1]][vertexIndex] == 0) {
             return false;
         }
         // second criterion: whether we have visited or not
 
-        for (int i = 0; i<position; i++){
-            if (hamiltonPath[i] == vertexIndex){
+        for (int i = 0; i < position; i++) {
+            if (hamiltonPath[i] == vertexIndex) {
                 return false;
             }
         }
@@ -70,12 +71,12 @@ public class HamiltonianCycle {
     public static void main(String[] args) {
 
         int[][] matrix = {
-                {0,1,1,1,0,0},
-                {1,0,1,0,1,0},
-                {1,1,1,1,0,1},
-                {1,0,1,0,0,1},
-                {0,1,0,0,0,1},
-                {0,1,1,1,1,1}
+                {0, 1, 1, 1, 0, 0},
+                {1, 0, 1, 0, 1, 0},
+                {1, 1, 1, 1, 0, 1},
+                {1, 0, 1, 0, 0, 1},
+                {0, 1, 0, 0, 0, 1},
+                {0, 1, 1, 1, 1, 1}
         };
         HamiltonianCycle cycle = new HamiltonianCycle(matrix);
         cycle.solve();
